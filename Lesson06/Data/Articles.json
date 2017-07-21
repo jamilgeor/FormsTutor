@@ -1,0 +1,31 @@
+[{
+    "Id": "5bd82a4f-47ca-40e9-902d-52d87faef7da",
+    "Title": "Getting Started with Xamarin.Forms",
+    "Url": "https://jamilgeor.com/getting-started-with-xamarin-forms/",
+    "CreatedAt": "2017-06-29"
+},
+{
+    "Id": "b9b1865b-eba4-4dd6-becf-0ab73ea79f14",
+    "Title": "Xamarin.Forms - ListView",
+    "Url": "https://jamilgeor.com/xamarin-forms-list-views/",
+    "CreatedAt": "2017-07-02"
+},
+{
+    "Id": "af0df42d-c683-4fa8-bc5a-08f55d887490",
+    "Title": "Setting up a ReactiveUI ViewModel",
+    "Url": "https://jamilgeor.com/setting-up-a-reactiveui-viewmodel/",
+    "CreatedAt": "2017-07-09"
+},
+{
+    "Id": "a224431a-fc33-449a-8398-9efd0da1bb88",
+    "Title": "Refreshing a ListView with ReactiveCommand",
+    "Url": "https://jamilgeor.com/refreshing-a-listview-with-reactivecommand/",
+    "CreatedAt": "2017-07-14"
+},
+{
+    "Id": "a750fa6c-919a-482e-97b4-dc034fa4f02c",
+    "Title": "ListView ItemTemplate with ReactiveUI ViewModel",
+    "Url": "https://jamilgeor.com/listview-itemtemplate-with-reactiveui-viewmodel/",
+    "CreatedAt": "2017-07-14"
+}
+]
