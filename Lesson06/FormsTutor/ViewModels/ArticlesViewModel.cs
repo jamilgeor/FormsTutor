@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 using FormsTutor.Models;
 using FormsTutor.Services;
 using ReactiveUI;
+using Akavache;
+using System.Reactive.Concurrency;
 
 namespace FormsTutor.ViewModels
 {
     public class ArticlesViewModel : ReactiveObject
     {
+        const string CacheKey = "AticleListCache";
+        DateTimeOffset CacheExpiry { get { return RxApp.MainThreadScheduler.Now.Add(TimeSpan.FromDays(1)); } }
+
         ReactiveList<Article> _articles;
 		readonly IArticleService _articleService;
 
@@ -25,29 +30,49 @@ namespace FormsTutor.ViewModels
 
 		public ArticlesViewModel()
 		{
-            _articleService = new ArticleService();
-            Articles = new ReactiveList<Article>();
+		    _articleService = new ArticleService();
+		    Articles = new ReactiveList<Article>();
+		    LoadArticles = ReactiveCommand.CreateFromObservable(LoadArticlesImpl);
 
-			LoadArticles = ReactiveCommand.CreateFromTask(LoadArticlesImpl);
+		    LoadArticles.Skip(1)
+		                .Subscribe(CacheArticles);
 
-			LoadArticles.ObserveOn(RxApp.MainThreadScheduler)
-						.Subscribe(MapArticles);
-
-			LoadArticles.Execute().Subscribe();
+		    LoadArticles.ObserveOn(RxApp.MainThreadScheduler)
+		                .Subscribe(MapArticles);
 		}
 
-		async Task<IEnumerable<Article>> LoadArticlesImpl()
+		IObservable<IEnumerable<Article>> LoadArticlesFromCache()
 		{
-            return await _articleService.Get();
+		    return BlobCache
+		        .LocalMachine
+		        .GetOrFetchObject<IEnumerable<Article>>
+		        (CacheKey, 
+		         async () => 
+		            await _articleService.Get(), CacheExpiry);
+		}
+
+		void CacheArticles(IEnumerable<Article> articles)
+		{
+		    BlobCache
+		        .LocalMachine
+		        .InsertObject(CacheKey, articles, CacheExpiry)
+		        .Wait();
+		}
+
+		IObservable<IEnumerable<Article>> LoadArticlesImpl()
+		{
+		    return !Articles.Any() ? 
+		        LoadArticlesFromCache() : 
+		        _articleService.Get();
 		}
 
 		void MapArticles(IEnumerable<Article> articles)
 		{
-            using (Articles.SuppressChangeNotifications())
-            {
-                Articles.Clear();
-                Articles.AddRange(articles);
-            }
+			using (Articles.SuppressChangeNotifications())
+			{
+				Articles.Clear();
+				Articles.AddRange(articles);
+			}
 		}
     }
 }

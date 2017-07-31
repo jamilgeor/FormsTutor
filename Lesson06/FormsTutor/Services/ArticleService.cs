@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using FormsTutor.Models;
+using Newtonsoft.Json;
+using System.Reactive.Linq;
+using System.Reactive.Concurrency;
 
 namespace FormsTutor.Services
 {
 	public interface IArticleService
 	{
-		Task<IEnumerable<Article>> Get();
+        IObservable<IEnumerable<Article>> Get();
 	}
 
 	public class ArticleService : IArticleService
 	{
-		int _index = 1;
-
-		public async Task<IEnumerable<Article>> Get()
+        public IObservable<IEnumerable<Article>> Get()
 		{
-			await Task.Delay(2000);
-            return new List<Article> { new Article { Title = $"Article {_index++}", CreatedAt = DateTime.UtcNow }, new Article { Title = $"Article {_index++}", CreatedAt = DateTime.UtcNow.AddDays(-1) } };
+            var url = $"{Configuration.ApiBaseUrl}Articles.json";
+            return Observable.FromAsync(() => new HttpClient().GetAsync(url))
+                             .SelectMany(async x => { x.EnsureSuccessStatusCode(); return await x.Content.ReadAsStringAsync(); })
+                             .Select(content => JsonConvert.DeserializeObject<Article[]>(content));
 		}
 	}
 }

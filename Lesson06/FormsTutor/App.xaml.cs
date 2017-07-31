@@ -1,4 +1,9 @@
 ﻿using Xamarin.Forms;
+using Akavache;
+using Splat;
+using System.Reactive.Linq;
+using System.Reactive;
+using System.Linq;
 
 namespace FormsTutor
 {
@@ -8,22 +13,32 @@ namespace FormsTutor
         {
             InitializeComponent();
 
+            BlobCache.ApplicationName = Configuration.ApplicationName;
+
             MainPage = new ArticlesPage();
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            
         }
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+            var caches = new [] 
+            { 
+                BlobCache.LocalMachine, 
+                BlobCache.Secure, 
+                BlobCache.UserAccount, 
+                BlobCache.InMemory 
+            };
+
+            caches.Select(x => x.Flush()).Merge().Select(_ => Unit.Default).Wait();
         }
 
         protected override void OnResume()
         {
-            // Handle when your app resumes
+            
         }
     }
 }

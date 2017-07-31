@@ -27,5 +27,11 @@
     "Title": "ListView ItemTemplate with ReactiveUI ViewModel",
     "Url": "https://jamilgeor.com/listview-itemtemplate-with-reactiveui-viewmodel/",
     "CreatedAt": "2017-07-14"
+},
+{
+    "Id": "b677da38-5dea-47df-a774-38e8533938eb",
+    "Title": "Using Akavache and HttpClient with REST services",
+    "Url": "https://jamilgeor.com/using-system-net-http-and-akavache-with-rest-services/",
+    "CreatedAt": "2017-07-31"
 }
 ]

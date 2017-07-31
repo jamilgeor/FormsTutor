@@ -19,12 +19,17 @@ namespace FormsTutor
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			ViewModel = new ArticlesViewModel();
+
+            ViewModel = new ArticlesViewModel();
 
             this.OneWayBind(ViewModel, vm => vm.Articles, v => v.Articles.ItemsSource).DisposeWith(_bindingsDisposable);
             this.BindCommand(ViewModel, vm => vm.LoadArticles, v => v.Articles, nameof(ListView.Refreshing)).DisposeWith(_bindingsDisposable);
 
             ViewModel.LoadArticles.Subscribe(_ => Articles.EndRefresh());
+			//https://codereview.stackexchange.com/questions/74642/a-viewmodel-using-reactiveui-6-that-loads-and-sends-data
+			this.WhenAnyValue(x => x.ViewModel.LoadArticles)
+                .SelectMany(x => x.Execute())
+                .Subscribe();
 		}
 
 		protected override void OnDisappearing()
