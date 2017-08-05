@@ -8,8 +8,8 @@ namespace FormsTutor.ViewModels
         ReactiveList<string> _articles;
 		public ReactiveList<string> Articles
 		{
-			get { return _articles; }
-			set { this.RaiseAndSetIfChanged(ref _articles, value); }
+            get => _articles;
+			set => this.RaiseAndSetIfChanged(ref _articles, value);
 		}
 
 		public ArticleListViewModel()
