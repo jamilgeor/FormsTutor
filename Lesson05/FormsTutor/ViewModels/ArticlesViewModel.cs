@@ -19,8 +19,8 @@ namespace FormsTutor.ViewModels
 
         public ReactiveList<Article> Articles
 		{
-			get { return _articles; }
-			set { this.RaiseAndSetIfChanged(ref _articles, value); }
+			get => _articles;
+			set => this.RaiseAndSetIfChanged(ref _articles, value);
 		}
 
 		public ArticlesViewModel()
@@ -31,7 +31,7 @@ namespace FormsTutor.ViewModels
 			LoadArticles = ReactiveCommand.CreateFromTask(LoadArticlesImpl);
 
 			LoadArticles.ObserveOn(RxApp.MainThreadScheduler)
-						.Subscribe(MapArticles);
+						.Subscribe(MapArticlesImpl);
 
 			LoadArticles.Execute().Subscribe();
 		}
@@ -41,7 +41,7 @@ namespace FormsTutor.ViewModels
             return await _articleService.Get();
 		}
 
-		void MapArticles(IEnumerable<Article> articles)
+		void MapArticlesImpl(IEnumerable<Article> articles)
 		{
             using (Articles.SuppressChangeNotifications())
             {
