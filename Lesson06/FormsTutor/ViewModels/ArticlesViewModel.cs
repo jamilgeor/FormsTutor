@@ -24,8 +24,8 @@ namespace FormsTutor.ViewModels
 
         public ReactiveList<Article> Articles
 		{
-			get { return _articles; }
-			set { this.RaiseAndSetIfChanged(ref _articles, value); }
+			get => _articles;
+			set => this.RaiseAndSetIfChanged(ref _articles, value);
 		}
 
 		public ArticlesViewModel()
@@ -35,10 +35,10 @@ namespace FormsTutor.ViewModels
 		    LoadArticles = ReactiveCommand.CreateFromObservable(LoadArticlesImpl);
 
 		    LoadArticles.Skip(1)
-		                .Subscribe(CacheArticles);
+		                .Subscribe(CacheArticlesImpl);
 
 		    LoadArticles.ObserveOn(RxApp.MainThreadScheduler)
-		                .Subscribe(MapArticles);
+		                .Subscribe(MapArticlesImpl);
 		}
 
 		IObservable<IEnumerable<Article>> LoadArticlesFromCache()
@@ -51,7 +51,7 @@ namespace FormsTutor.ViewModels
 		            await _articleService.Get(), CacheExpiry);
 		}
 
-		void CacheArticles(IEnumerable<Article> articles)
+		void CacheArticlesImpl(IEnumerable<Article> articles)
 		{
 		    BlobCache
 		        .LocalMachine
@@ -66,7 +66,7 @@ namespace FormsTutor.ViewModels
 		        _articleService.Get();
 		}
 
-		void MapArticles(IEnumerable<Article> articles)
+		void MapArticlesImpl(IEnumerable<Article> articles)
 		{
 			using (Articles.SuppressChangeNotifications())
 			{
