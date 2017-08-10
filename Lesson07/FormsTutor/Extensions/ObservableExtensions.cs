@@ -18,7 +18,7 @@ namespace FormsTutor.Extensions
                 var delay = TimeSpan.FromSeconds(Math.Pow(attempt++, 2));
                 var observable = attempt == 1 ? source : Observable.Timer(delay).SelectMany(_ => source);
 
-                return observable.Select(item => item);
+                return observable;
 			})
 			.Retry(retryCount)
 			.SelectMany(x => Observable.Return(x));
