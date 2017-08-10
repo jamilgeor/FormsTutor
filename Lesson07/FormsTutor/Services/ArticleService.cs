@@ -6,22 +6,31 @@ using FormsTutor.Models;
 using Newtonsoft.Json;
 using System.Reactive.Linq;
 using System.Reactive.Concurrency;
+using FormsTutor.Extensions;
 
 namespace FormsTutor.Services
 {
-	public interface IArticleService
-	{
+    public interface IArticleService
+    {
         IObservable<IEnumerable<Article>> Get();
-	}
+    }
 
-	public class ArticleService : IArticleService
-	{
+    public class ArticleService : IArticleService
+    {
         public IObservable<IEnumerable<Article>> Get()
-		{
+        {
             var url = $"{Configuration.ApiBaseUrl}Articles.json";
-            return Observable.FromAsync(() => new HttpClient().GetAsync(url))
-                             .SelectMany(async x => { x.EnsureSuccessStatusCode(); return await x.Content.ReadAsStringAsync(); })
-                             .Select(content => JsonConvert.DeserializeObject<Article[]>(content));
-		}
-	}
+            return Observable.FromAsync(() =>
+            {
+                return new HttpClient().GetAsync(url);
+            })
+            .SelectMany(async x =>
+            {
+                x.EnsureSuccessStatusCode();
+                return await x.Content.ReadAsStringAsync();
+            })
+            .RetryWithDelay(Configuration.NumberOfWebRequestRetries)
+            .Select(content => JsonConvert.DeserializeObject<Article[]>(content));
+        }
+    }
 }
