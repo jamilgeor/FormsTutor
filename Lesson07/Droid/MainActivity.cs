@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -7,7 +6,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Serilog;
 
 namespace FormsTutor.Droid
 {
@@ -16,10 +14,6 @@ namespace FormsTutor.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.AndroidLog()
-                .CreateLogger();
-            
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

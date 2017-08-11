@@ -9,11 +9,11 @@ using FormsTutor.Services;
 using ReactiveUI;
 using Akavache;
 using System.Reactive.Concurrency;
-using Serilog;
+using Splat;
 
 namespace FormsTutor.ViewModels
 {
-    public class ArticlesViewModel : ReactiveObject
+    public class ArticlesViewModel : ReactiveObject, IEnableLogger
     {
         const string CacheKey = "AticleListCache";
         DateTimeOffset CacheExpiry { get { return RxApp.MainThreadScheduler.Now.Add(TimeSpan.FromDays(1)); } }
@@ -40,14 +40,13 @@ namespace FormsTutor.ViewModels
 		    LoadArticles = ReactiveCommand.CreateFromObservable(LoadArticlesImpl);
 
             LoadArticles.ThrownExceptions
+                        .Log(this)
                         .ObserveOn(RxApp.MainThreadScheduler)
                         .Subscribe(async x =>
                         {
-                            Log.ForContext<ArticlesViewModel>().Error(x, x.Message);
                             await ShowError.Handle("There was a problem retrieving articles.");
                         });
 
-            
 		    LoadArticles.Skip(1)
                         .Subscribe(CacheArticlesImpl);
 
@@ -84,8 +83,8 @@ namespace FormsTutor.ViewModels
 		{
 			using (Articles.SuppressChangeNotifications())
 			{
-				Articles.Clear();
-				Articles.AddRange(articles);
+                Articles.Clear();
+                Articles.AddRange(articles);
 			}
 		}
     }

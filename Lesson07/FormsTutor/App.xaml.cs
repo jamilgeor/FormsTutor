@@ -15,12 +15,14 @@ namespace FormsTutor
 
             BlobCache.ApplicationName = Configuration.ApplicationName;
 
+            var logger = new LogImpl() { Level = LogLevel.Debug };
+            Locator.CurrentMutable.RegisterConstant(logger, typeof(ILogger));
+
             MainPage = new ArticlesPage();
         }
 
         protected override void OnStart()
         {
-            
         }
 
         protected override void OnSleep()
@@ -41,4 +43,19 @@ namespace FormsTutor
             
         }
     }
+
+	public class LogImpl : ILogger
+	{
+		public void Write(string message, LogLevel logLevel)
+		{
+			if ((int)logLevel < (int)Level)
+			{
+				return;
+			}
+
+            System.Diagnostics.Debug.WriteLine(message);
+		}
+
+		public LogLevel Level { get; set; }
+	}
 }

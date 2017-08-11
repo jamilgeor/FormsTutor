@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Reactive.Linq;
 using System.Reactive.Concurrency;
 using FormsTutor.Extensions;
+using Splat;
 
 namespace FormsTutor.Services
 {

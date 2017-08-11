@@ -149,12 +149,6 @@
       <HintPath>..\packages\akavache.sqlite3.5.0.0\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.Sqlite3.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Serilog">
-      <HintPath>..\packages\Serilog.2.2.0\lib\netstandard1.3\Serilog.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.Xamarin.Droid">
-      <HintPath>..\packages\Serilog.Sinks.Xamarin.0.1.29\lib\MonoAndroid403\Serilog.Sinks.Xamarin.Droid.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FormsTutor\FormsTutor.csproj">
