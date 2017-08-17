@@ -33,5 +33,11 @@
     "Title": "Using Akavache and HttpClient with REST services",
     "Url": "https://jamilgeor.com/using-system-net-http-and-akavache-with-rest-services/",
     "CreatedAt": "2017-07-31"
+},
+{
+    "Id": "208b1215-3901-4b16-8e60-a6b6437b66af",
+    "Title": "Handling Errors with Xamarin.Forms and ReactiveUI",
+    "Url": "https://jamilgeor.com/handling-errors-with-xamarin-forms-and-reactiveui/",
+    "CreatedAt": "2017-08-17"
 }
 ]

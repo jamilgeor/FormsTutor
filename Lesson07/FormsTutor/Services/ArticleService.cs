@@ -16,22 +16,22 @@ namespace FormsTutor.Services
         IObservable<IEnumerable<Article>> Get();
     }
 
-    public class ArticleService : IArticleService
-    {
-        public IObservable<IEnumerable<Article>> Get()
-        {
-            var url = $"{Configuration.ApiBaseUrl}Articles.json";
-            return Observable.FromAsync(() =>
-            {
-                return new HttpClient().GetAsync(url);
-            })
-            .SelectMany(async x =>
-            {
-                x.EnsureSuccessStatusCode();
-                return await x.Content.ReadAsStringAsync();
-            })
-            .RetryWithDelay(Configuration.NumberOfWebRequestRetries)
-            .Select(content => JsonConvert.DeserializeObject<Article[]>(content));
-        }
-    }
+	public class ArticleService : IArticleService
+	{
+	    public IObservable<IEnumerable<Article>> Get()
+	    {
+	        var url = $"{Configuration.ApiBaseUrl}Articles.json";
+	        return Observable.FromAsync(() =>
+	        {
+	            return new HttpClient().GetAsync(url);
+	        })
+	        .SelectMany(async x =>
+	        {
+	            x.EnsureSuccessStatusCode();
+	            return await x.Content.ReadAsStringAsync();
+	        })
+	        .RetryWithDelay(Configuration.NumberOfWebRequestRetries)
+	        .Select(content => JsonConvert.DeserializeObject<Article[]>(content));
+	    }
+	}
 }

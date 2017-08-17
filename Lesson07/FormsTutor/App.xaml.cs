@@ -4,22 +4,23 @@ using Splat;
 using System.Reactive.Linq;
 using System.Reactive;
 using System.Linq;
+using System.Diagnostics;
 
 namespace FormsTutor
 {
     public partial class App : Application
     {
-        public App()
-        {
-            InitializeComponent();
+		public App()
+		{
+		    InitializeComponent();
 
-            BlobCache.ApplicationName = Configuration.ApplicationName;
+		    BlobCache.ApplicationName = Configuration.ApplicationName;
 
-            var logger = new LogImpl() { Level = LogLevel.Debug };
-            Locator.CurrentMutable.RegisterConstant(logger, typeof(ILogger));
+		    var logger = new Logger() { Level = LogLevel.Debug };
+		    Locator.CurrentMutable.RegisterConstant(logger, typeof(ILogger));
 
-            MainPage = new ArticlesPage();
-        }
+		    MainPage = new ArticlesPage();
+		}
 
         protected override void OnStart()
         {
@@ -44,16 +45,13 @@ namespace FormsTutor
         }
     }
 
-	public class LogImpl : ILogger
+	public class Logger : ILogger
 	{
 		public void Write(string message, LogLevel logLevel)
 		{
-			if ((int)logLevel < (int)Level)
-			{
-				return;
-			}
+	        if ((int)logLevel < (int)Level) return;
 
-            System.Diagnostics.Debug.WriteLine(message);
+	        Debug.WriteLine(message);
 		}
 
 		public LogLevel Level { get; set; }

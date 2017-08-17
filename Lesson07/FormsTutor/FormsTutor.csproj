@@ -46,7 +46,7 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="Extensions\ObservableExtensions.cs" />
+    <Compile Include="Extensions\IObservableMixins.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Reactive.Interfaces">
