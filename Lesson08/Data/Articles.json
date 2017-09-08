@@ -1,0 +1,49 @@
+[{
+    "Id": "5bd82a4f-47ca-40e9-902d-52d87faef7da",
+    "Title": "Getting Started with Xamarin.Forms",
+    "Url": "https://jamilgeor.com/getting-started-with-xamarin-forms/",
+    "CreatedAt": "2017-06-29"
+},
+{
+    "Id": "b9b1865b-eba4-4dd6-becf-0ab73ea79f14",
+    "Title": "Xamarin.Forms - ListView",
+    "Url": "https://jamilgeor.com/xamarin-forms-list-views/",
+    "CreatedAt": "2017-07-02"
+},
+{
+    "Id": "af0df42d-c683-4fa8-bc5a-08f55d887490",
+    "Title": "Setting up a ReactiveUI ViewModel",
+    "Url": "https://jamilgeor.com/setting-up-a-reactiveui-viewmodel/",
+    "CreatedAt": "2017-07-09"
+},
+{
+    "Id": "a224431a-fc33-449a-8398-9efd0da1bb88",
+    "Title": "Refreshing a ListView with ReactiveCommand",
+    "Url": "https://jamilgeor.com/refreshing-a-listview-with-reactivecommand/",
+    "CreatedAt": "2017-07-14"
+},
+{
+    "Id": "a750fa6c-919a-482e-97b4-dc034fa4f02c",
+    "Title": "ListView ItemTemplate with ReactiveUI ViewModel",
+    "Url": "https://jamilgeor.com/listview-itemtemplate-with-reactiveui-viewmodel/",
+    "CreatedAt": "2017-07-14"
+},
+{
+    "Id": "b677da38-5dea-47df-a774-38e8533938eb",
+    "Title": "Using Akavache and HttpClient with REST services",
+    "Url": "https://jamilgeor.com/using-system-net-http-and-akavache-with-rest-services/",
+    "CreatedAt": "2017-07-31"
+},
+{
+    "Id": "208b1215-3901-4b16-8e60-a6b6437b66af",
+    "Title": "Handling Errors with Xamarin.Forms and ReactiveUI",
+    "Url": "https://jamilgeor.com/handling-errors-with-xamarin-forms-and-reactiveui/",
+    "CreatedAt": "2017-08-17"
+},
+{
+    "Id": "1c3cd115-4e17-4308-9256-887526710fb3",
+    "Title": "ViewModel Routing with ReactiveUI and Xamarin.Forms",
+    "Url": "https://jamilgeor.com/viewmodel-routing-with-reactiveui-and-xamarin-forms/",
+    "CreatedAt": "2017-09-08"
+}
+]
