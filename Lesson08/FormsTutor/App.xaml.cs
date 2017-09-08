@@ -9,9 +9,7 @@ namespace FormsTutor
 {
     public partial class App : Application
     {
-        AppBootstrapper boot;
-        
-		public App()
+        public App()
 		{
 		    InitializeComponent();
 
