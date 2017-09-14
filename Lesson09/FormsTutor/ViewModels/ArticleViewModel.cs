@@ -23,11 +23,7 @@ namespace FormsTutor.ViewModels
 
         readonly IArticleService _articleService;
 
-        Article _article;
-        public Article Article {
-            get => _article;
-            set => this.RaiseAndSetIfChanged(ref _article, value);
-        }
+        public Article Article { get; set; }
 
         string _content;
         public string Content {
