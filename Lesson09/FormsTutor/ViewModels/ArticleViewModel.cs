@@ -31,8 +31,6 @@ namespace FormsTutor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
-        public ReactiveCommand<Unit, string> LoadContent { get; private set; }
-
         public ArticleViewModel(IScreen hostScreen, Article article)
         {
             HostScreen = hostScreen;
