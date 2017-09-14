@@ -5,6 +5,8 @@ using ReactiveUI;
 using FormsTutor.ViewModels;
 using ReactiveUI.XamForms;
 using FormsTutor.Services;
+using FormsTutor.Views;
+using FormsTutor.BindingTypeConverters;
 
 namespace FormsTutor
 {
@@ -40,7 +42,9 @@ namespace FormsTutor
             dependencyResolver.Register(() => new ArticlePage(), typeof(IViewFor<ArticleViewModel>));
             dependencyResolver.Register(() => new ArticleService(), typeof(IArticleService));
             dependencyResolver.Register(() => new HtmlParserService(), typeof(IHtmlParserService));
-        }
+
+			dependencyResolver.RegisterConstant(new HtmlBindingTypeConverter(), typeof(IBindingTypeConverter));
+		}
 
         public Page CreateMainPage()
         {

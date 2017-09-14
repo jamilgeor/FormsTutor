@@ -7,7 +7,7 @@ using System;
 using System.Reactive;
 using FormsTutor.Models;
 
-namespace FormsTutor
+namespace FormsTutor.Views
 {
     public partial class ArticlesPage : ContentPage, IViewFor<ArticlesViewModel>
     {

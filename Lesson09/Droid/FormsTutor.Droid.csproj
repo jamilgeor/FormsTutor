@@ -153,6 +153,12 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.5.5\lib\netstandard2.0\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="ReactiveUI.Events_XamForms">
+      <HintPath>..\packages\reactiveui-events-xamforms.7.4.0\lib\portable-net45+netcore45+wp8+UAP10+MonoAndroid403+MonoTouch10+Xamarin.iOS10\ReactiveUI.Events_XamForms.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI.XamForms">
+      <HintPath>..\packages\reactiveui-xamforms.7.4.0\lib\portable-net45+netcore45+wp8+wpa81+UAP10+MonoAndroid403+MonoTouch10+Xamarin.iOS10\ReactiveUI.XamForms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FormsTutor\FormsTutor.csproj">

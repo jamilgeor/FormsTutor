@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FormsTutor.ViewModels;
 using ReactiveUI;
 using System.Reactive;
@@ -7,7 +6,7 @@ using System.Reactive.Linq;
 using Xamarin.Forms;
 using System.Reactive.Disposables;
 
-namespace FormsTutor
+namespace FormsTutor.Views
 {
     public partial class ArticlePage : ContentPage, IViewFor<ArticleViewModel>
     {
@@ -22,12 +21,7 @@ namespace FormsTutor
         {
             base.OnAppearing();
 
-            this.WhenAnyValue(x => x.ViewModel.Content)
-                .Select(content =>
-                {
-                    return ArticleContent.Source = new HtmlWebViewSource { Html = content };
-                })
-                .Subscribe();
+            this.OneWayBind(ViewModel, vm => vm.Content, v => v.ArticleContent.Source).DisposeWith(_bindingsDisposable);
 		}
 
 		#region ViewModel Setup

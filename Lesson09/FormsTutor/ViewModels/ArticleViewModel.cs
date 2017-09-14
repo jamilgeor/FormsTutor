@@ -40,23 +40,17 @@ namespace FormsTutor.ViewModels
             _articleService = Splat.Locator.Current.GetService<IArticleService>();
             _htmlParserService = Splat.Locator.Current.GetService<IHtmlParserService>();
 
-            LoadArticleContent()
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .Catch<string, Exception>((error) => {
-                    this.Log().ErrorException($"Error loading article {Article.Id}", error);
-                    return Observable.Return("<html><body>Error loading article.</body></html>");
-                })
-                .Subscribe(MapArticlesImpl);
+			LoadArticleContent()
+				.ObserveOn(RxApp.MainThreadScheduler)
+				.Catch<string, Exception>((error) =>
+				{
+					this.Log().ErrorException($"Error loading article {Article.Id}", error);
+					return Observable.Return("<html><body>Error loading article.</body></html>");
+				})
+				.Subscribe(MapContentImpl);
         }
 
-		IObservable<string> LoadArticleContent()
-		{
-			return string.IsNullOrEmpty(Content) ?
-				LoadArticleContentFromCache() :
-				_articleService.Get(Article.Url);
-		}
-
-		IObservable<string> LoadArticleContentFromCache()
+        IObservable<string> LoadArticleContent()
 		{
 			return BlobCache
 				.LocalMachine
@@ -66,15 +60,7 @@ namespace FormsTutor.ViewModels
                  await _articleService.Get(Article.Url), CacheExpiry);
 		}
 
-		void CacheArticleContentImpl(string content)
-		{
-			BlobCache
-				.LocalMachine
-                .InsertObject(CacheKey, content, CacheExpiry)
-				.Wait();
-		}
-
-		void MapArticlesImpl(string content)
+		void MapContentImpl(string content)
 		{
             Content = _htmlParserService.Parse(content, Configuration.BlogBaseUrl);
 		}
