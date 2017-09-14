@@ -35,9 +35,6 @@ namespace FormsTutor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
-        readonly Interaction<string, Unit> _showError;
-        public Interaction<string, Unit> ShowError => _showError;
-
         public ReactiveCommand<Unit, string> LoadContent { get; private set; }
 
         public ArticleViewModel(IScreen hostScreen, Article article)
@@ -48,7 +45,6 @@ namespace FormsTutor.ViewModels
 
             _articleService = Splat.Locator.Current.GetService<IArticleService>();
             _htmlParserService = Splat.Locator.Current.GetService<IHtmlParserService>();
-            _showError = new Interaction<string, Unit>();
 
             LoadArticleContent()
                 .ObserveOn(RxApp.MainThreadScheduler)
