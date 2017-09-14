@@ -31,7 +31,7 @@
 {
     "Id": "b677da38-5dea-47df-a774-38e8533938eb",
     "Title": "Using Akavache and HttpClient with REST services",
-    "Url": "https://jamilgeor.com/using-system-net-http-and-akavache-with-rest-services/",
+    "Url": "https://jamilgeor.com/using-akavache-and-httpclient-with-rest-services/",
     "CreatedAt": "2017-07-31"
 },
 {
@@ -45,5 +45,11 @@
     "Title": "ViewModel Routing with ReactiveUI and Xamarin.Forms",
     "Url": "https://jamilgeor.com/viewmodel-routing-with-reactiveui-and-xamarin-forms/",
     "CreatedAt": "2017-09-08"
+}
+{
+    "Id": "55c4f2f1-6a39-40cf-9dca-13375f4edc93",
+    "Title": "Binding a Xamarin.Forms WebView to ReactiveUI View Model using Custom Type Converters",
+    "Url": "https://jamilgeor.com/binding-a-xamarin-forms-webview-to-reactiveui-view-model-using-custom-type-converters/",
+    "CreatedAt": "2017-09-14"
 }
 ]
