@@ -1,5 +1,5 @@
 # FormsTutor
-This project relates to a series of blog posts I have written.  It takes you through the basic steps required to setup your first Xamarin.Forms application using ReactiveUI.
+This project relates to a series of blog posts I have written.  The series takes you through the basic steps required to setup your first Xamarin.Forms application using ReactiveUI.
 
 Here are a list of the lessons:
 1. [Getting Started with Xamarin Forms](https://jamilgeor.com/getting-started-with-xamarin-forms/)
