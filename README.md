@@ -14,4 +14,5 @@ Here are a list of the lessons:
 
 
 t: [http://twitter.com/jamilgeor](http://twitter.com/jamilgeor)
+
 w: [https://jamilgeor.com](https://jamilgeor.com)
